@@ -1,0 +1,18 @@
+.full-width{
+ width: 100%;
+}
+.full-width-with-button{
+    width: 85%;
+}
+.half-width-with-button{
+    width: 50%;
+}
+.half-width{
+    width: 40%;
+}
+.d-flex{
+    display: flex;
+    flex-direction: column;
+
+   
+}

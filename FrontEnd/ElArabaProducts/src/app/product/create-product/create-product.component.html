@@ -1,0 +1,42 @@
+<mat-card>
+    <form [formGroup]="form" >
+     <h2>Create Product</h2>
+     <mat-form-field class="full-width">
+         <mat-label>Product Name</mat-label>
+         <input class="full-width" formControlName="productName" matInput type="text" placeholder="Product Name" >
+         <mat-error *ngIf="ProductName.invalid && ProductName.touched">
+            <mat-error *ngIf="ProductName.errors.required"> The Product Name is not valid</mat-error>
+         </mat-error>
+     </mat-form-field>
+
+     <mat-form-field class="full-width-with-button">
+        <mat-label >Product Serial</mat-label>
+        <input matInput  class="full-width" type="text" #text required placeholder="Product Serial" (keyup.enter)="AddBarCode(text)" >
+       
+        <mat-error>
+            
+        </mat-error>
+    </mat-form-field>
+
+    <mat-card class="d-flex">
+        <div *ngFor="let item of ProductSerials.controls;let i= index" >
+            <mat-form-field class="half-width">
+                <input class="half-width" matInput type="text" [formControl]="item"/>
+            </mat-form-field>
+         
+
+            <button  mat-mini-fab color="warn" type="button" (click)="DeleteElement(i)">
+                <mat-icon>close</mat-icon>
+              </button>
+              <div style="align-self: flex-end;">
+              <ngx-barcode [ngStyle]="{display:'inline-block',alignSelf:'flex-end'}" [bc-value]="item.value" [bc-display-value]="true"></ngx-barcode>
+            </div>
+         
+        </div>
+    </mat-card>
+   
+     
+      <br>
+      <button [disabled]="form.invalid" type="button"(click)="OnSubmitData()" mat-raised-button color="primary">Add</button>
+    </form>
+</mat-card>
